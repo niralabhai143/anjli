@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 Magical Rakhi Greeting for Didi 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fff5f5 0%, #ffecec 50%, #ffdfdf 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff6b8b" d="M12 2L4 12l8 10 8-10z"/></svg>'), auto;
+    }
+
+    /* Floating Elements Around Card */
+    .floating-element {
+      position: absolute;
+      z-index: 1;
+      font-size: 24px;
+      animation: floatAround 15s linear infinite;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(50px, -50px) rotate(10deg); }
+      50% { transform: translate(100px, 0) rotate(0deg); }
+      75% { transform: translate(50px, 50px) rotate(-10deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    /* Falling Elements Animation */
+    .falling-element {
+      position: fixed;
+      top: -50px;
+      z-index: 0;
+      font-size: 20px;
+      animation: fall linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    /* Main Greeting Card */
+    .card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 2px solid #ffcce0;
+      border-radius: 25px;
+      padding: 40px 50px;
+      box-shadow: 0 15px 40px rgba(255, 182, 193, 0.25);
+      max-width: 650px;
+      text-align: center;
+      position: relative;
+      backdrop-filter: blur(5px);
+      z-index: 10;
+      margin: 20px;
+      animation: gentleBounce 4s ease-in-out infinite;
+    }
+
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Photo Section */
+    .polaroid-frame {
+      width: 280px;
+      margin: 30px auto;
+      background: white;
+      padding: 15px 15px 50px;
+      box-shadow: 0 8px 16px rgba(255, 182, 193, 0.3);
+      transform: rotate(-2deg);
+      transition: all 0.4s ease;
+      position: relative;
+      animation: float 4s ease-in-out infinite;
+      background-image: radial-gradient(circle at 10% 20%, #fff5f5 0%, white 70%);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: rotate(-2deg) translateY(0); }
+      50% { transform: rotate(-2deg) translateY(-10px); }
+    }
+
+    .photo-container {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 2px;
+      border-bottom: 1px solid #ffd6e7;
+    }
+
+    .photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+      filter: brightness(0.98) contrast(1.05);
+    }
+
+    /* Cute Elements Inside Photo Frame */
+    .cute-element {
+      position: absolute;
+      z-index: 2;
+      pointer-events: none;
+      animation: floatElement 4s ease-in-out infinite;
+      filter: drop-shadow(0 2px 4px rgba(255, 182, 193, 0.4));
+    }
+
+    @keyframes floatElement {
+      0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      25% { transform: translate(2px, -5px) rotate(2deg) scale(1.05); }
+      50% { transform: translate(0, -8px) rotate(0deg) scale(1.1); }
+      75% { transform: translate(-2px, -5px) rotate(-2deg) scale(1.05); }
+    }
+
+    /* Greeting Text Styles */
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2em;
+      color: #ff6b8b;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 4px rgba(255, 182, 193, 0.4);
+      position: relative;
+      animation: titleGlow 2s infinite alternate;
+    }
+
+    .message {
+      font-size: 1.1em;
+      line-height: 1.8;
+      color: #555;
+      margin: 25px 0;
+    }
+
+    .polaroid-caption {
+      font-family: 'Pacifico', cursive;
+      color: #ff6b8b;
+      margin-top: 15px;
+      font-size: 1.3em;
+    }
+
+    /* Navigation Button */
+    .nav-button {
+      background: linear-gradient(to right, #ff9e9e, #ff6b8b);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 25px;
+      box-shadow: 0 4px 15px rgba(255, 158, 158, 0.3);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 158, 158, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Elements Around the Card -->
+  <div class="floating-element" style="top:20%; left:10%;">🦋</div>
+  <div class="floating-element" style="top:30%; right:15%; animation-delay:2s;">🌸</div>
+  <div class="floating-element" style="bottom:25%; left:20%; animation-delay:4s;">✨</div>
+
+  <!-- Main Greeting Card -->
+  <div class="card">
+    <h1>🌸 Happy Rakhi, Didi! 🌸</h1>
+    
+    <!-- Photo Section -->
+    <div class="polaroid-frame">
+      <div class="photo-container">
+        <img src="didi.jpg" alt="My Lovely Didi">
+        <!-- Cute decorative elements around photo -->
+        <div class="cute-element" style="top:10px; left:10px; font-size:30px;">✨</div>
+        <div class="cute-element" style="top:10px; right:10px; font-size:25px;">❀</div>
+        <div class="cute-element" style="bottom:40px; left:15px; font-size:35px;">♥</div>
+        <div class="cute-element" style="bottom:30px; right:10px; font-size:28px;">✧</div>
+      </div>
+      <div class="polaroid-caption">My Precious Sister</div>
+    </div>
+    
+    <!-- Greeting Message -->
+    <div class="message">
+      No matter where life takes us,<br>
+      You'll always be my first best friend.<br>
+      Thanks for all the love, scoldings, and care!
+    </div>
+    
+    <a href="shayari.html" class="nav-button">Read Special Shayari →</a>
+  </div>
+
+  <script>
+    // Create falling elements when tapping anywhere
+    document.addEventListener('click', function(e) {
+      createFallingElements(e.clientX);
+      createSparkleBurst(e.clientX, e.clientY);
+    });
+
+    function createFallingElements(xPosition) {
+      const elements = ['🌸', '🌼', '💮', '🏵️', '🌺', '🌻', '✨', '🌟'];
+      const colors = ['#ff9e9e', '#ff6b8b', '#ffb6c1', '#ff85a2', '#f8a5c2'];
+      
+      // Create 10 falling elements
+      for (let i = 0; i < 10; i++) {
+        const element = document.createElement('div');
+        element.className = 'falling-element';
+        element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+        element.style.left = (xPosition - 50 + Math.random() * 100) + 'px';
+        element.style.color = colors[Math.floor(Math.random() * colors.length)];
+        element.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        element.style.fontSize = (Math.random() * 10 + 20) + 'px';
+        document.body.appendChild(element);
+        
+        // Remove after animation completes
+        setTimeout(() => {
+          element.remove();
+        }, 5000);
+      }
+    }
+
+    function createSparkleBurst(x, y) {
+      for (let i = 0; i < 8; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.style.position = 'fixed';
+        sparkle.style.left = x + 'px';
+        sparkle.style.top = y + 'px';
+        sparkle.style.fontSize = '20px';
+        sparkle.style.zIndex = '100';
+        sparkle.innerHTML = ['✨', '❀', '✧', '♥'][Math.floor(Math.random() * 4)];
+        sparkle.style.animation = `sparkleBurst ${Math.random() * 0.5 + 0.5}s ease-out forwards`;
+        sparkle.style.transformOrigin = 'center';
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 500);
+      }
+    }
+
+    // Add CSS for sparkle burst
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes sparkleBurst {
+        0% { transform: translate(0, 0) scale(0); opacity: 0; }
+        50% { transform: translate(${Math.random() > 0.5 ? '-' : ''}${Math.random() * 30}px, ${Math.random() > 0.5 ? '-' : ''}${Math.random() * 30}px) scale(1.5); opacity: 1; }
+        100% { transform: translate(${Math.random() > 0.5 ? '-' : ''}${Math.random() * 60}px, ${Math.random() > 0.5 ? '-' : ''}${Math.random() * 60}px) scale(0); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
