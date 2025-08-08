@@ -27,13 +27,18 @@
       margin-bottom: 20px;
     }
 
+    .password-wrapper {
+      position: relative;
+      width: 80%;
+      margin: 0 auto 15px;
+    }
+
     .password-input {
-      padding: 12px 15px;
+      padding: 12px 45px 12px 15px;
       border: 2px solid #ffb6c1;
       border-radius: 8px;
       font-size: 16px;
-      width: 80%;
-      margin-bottom: 15px;
+      width: 100%;
       outline: none;
       transition: all 0.3s;
     }
@@ -41,6 +46,18 @@
     .password-input:focus {
       border-color: #ff6b8b;
       box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.2);
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #ff6b8b;
+      background: none;
+      border: none;
+      font-size: 18px;
     }
 
     .submit-btn {
@@ -248,7 +265,12 @@
   <div class="password-container" id="passwordContainer">
     <h2>🌸 Enter Password 🌸</h2>
     <p>To view this special Rakhi message, please enter the password:</p>
-    <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+    
+    <div class="password-wrapper">
+      <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+      <button class="toggle-password" id="togglePassword">👁️</button>
+    </div>
+    
     <button class="submit-btn" onclick="checkPassword()">Unlock Greeting</button>
     <p class="error-message" id="errorMessage">Incorrect password! Try again.</p>
   </div>
@@ -289,9 +311,18 @@
   </div>
 
   <script>
+    // Password visibility toggle
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('passwordInput');
+    
+    togglePassword.addEventListener('click', function() {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+    });
+
     // Password Check Function
     function checkPassword() {
-      const passwordInput = document.getElementById('passwordInput');
       const errorMessage = document.getElementById('errorMessage');
       const passwordContainer = document.getElementById('passwordContainer');
       const mainContent = document.getElementById('mainContent');
