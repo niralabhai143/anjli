@@ -7,6 +7,71 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap');
     
+    /* Password Container Styles */
+    .password-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 3px double #ff9e9e;
+      border-radius: 25px;
+      padding: 40px 50px;
+      box-shadow: 0 15px 40px rgba(255, 158, 158, 0.25);
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      z-index: 100;
+      margin: 20px;
+    }
+
+    .password-container h2 {
+      font-family: 'Pacifico', cursive;
+      color: #ff4d79;
+      margin-bottom: 20px;
+    }
+
+    .password-input {
+      padding: 12px 15px;
+      border: 2px solid #ffb6c1;
+      border-radius: 8px;
+      font-size: 16px;
+      width: 80%;
+      margin-bottom: 15px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .password-input:focus {
+      border-color: #ff6b8b;
+      box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.2);
+    }
+
+    .submit-btn {
+      background: linear-gradient(to right, #ff6b8b, #ff4d79);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
+    }
+
+    .error-message {
+      color: #ff4d79;
+      margin-top: 10px;
+      font-weight: 600;
+      display: none;
+    }
+
+    /* Main Content Styles (hidden initially) */
+    .main-content {
+      display: none;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -179,94 +244,135 @@
   </style>
 </head>
 <body>
-  <!-- Floating Elements Around the Card -->
-  <div class="floating-element" style="top:20%; left:10%;">🦋</div>
-  <div class="floating-element" style="top:30%; right:15%; animation-delay:2s;">🌸</div>
-  <div class="floating-element" style="bottom:25%; left:20%; animation-delay:4s;">✨</div>
+  <!-- Password Container (shown first) -->
+  <div class="password-container" id="passwordContainer">
+    <h2>🌸 Enter Password 🌸</h2>
+    <p>To view this special Rakhi message, please enter the password:</p>
+    <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+    <button class="submit-btn" onclick="checkPassword()">Unlock Greeting</button>
+    <p class="error-message" id="errorMessage">Incorrect password! Try again.</p>
+  </div>
 
-  <!-- Main Greeting Card -->
-  <div class="card">
-    <h1>🌸 Happy Rakhi, Didi! 🌸</h1>
-    
-    <!-- Photo Section -->
-    <div class="polaroid-frame">
-      <div class="photo-container">
-        <img src="didi.jpg" alt="My Lovely Didi">
-        <!-- Cute decorative elements around photo -->
-        <div class="cute-element" style="top:10px; left:10px; font-size:30px;">✨</div>
-        <div class="cute-element" style="top:10px; right:10px; font-size:25px;">❀</div>
-        <div class="cute-element" style="bottom:40px; left:15px; font-size:35px;">♥</div>
-        <div class="cute-element" style="bottom:30px; right:10px; font-size:28px;">✧</div>
+  <!-- Main Content (hidden until password is entered) -->
+  <div class="main-content" id="mainContent">
+    <!-- Floating Elements Around the Card -->
+    <div class="floating-element" style="top:20%; left:10%;">🦋</div>
+    <div class="floating-element" style="top:30%; right:15%; animation-delay:2s;">🌸</div>
+    <div class="floating-element" style="bottom:25%; left:20%; animation-delay:4s;">✨</div>
+
+    <!-- Main Greeting Card -->
+    <div class="card">
+      <h1>🌸 Happy Rakhi, Didi! 🌸</h1>
+      
+      <!-- Photo Section -->
+      <div class="polaroid-frame">
+        <div class="photo-container">
+          <img src="didi.jpg" alt="My Lovely Didi">
+          <!-- Cute decorative elements around photo -->
+          <div class="cute-element" style="top:10px; left:10px; font-size:30px;">✨</div>
+          <div class="cute-element" style="top:10px; right:10px; font-size:25px;">❀</div>
+          <div class="cute-element" style="bottom:40px; left:15px; font-size:35px;">♥</div>
+          <div class="cute-element" style="bottom:30px; right:10px; font-size:28px;">✧</div>
+        </div>
+        <div class="polaroid-caption">My Precious Sister</div>
       </div>
-      <div class="polaroid-caption">My Precious Sister</div>
+      
+      <!-- Greeting Message -->
+      <div class="message">
+        No matter where life takes us,<br>
+        You'll always be my first best friend.<br>
+        Thanks for all the love, scoldings, and care!
+      </div>
+      
+      <a href="shayari.html" class="nav-button">Read Special Shayari →</a>
     </div>
-    
-    <!-- Greeting Message -->
-    <div class="message">
-      No matter where life takes us,<br>
-      You'll always be my first best friend.<br>
-      Thanks for all the love, scoldings, and care!
-    </div>
-    
-    <a href="shayari.html" class="nav-button">Read Special Shayari →</a>
   </div>
 
   <script>
-    // Create falling elements when tapping anywhere
-    document.addEventListener('click', function(e) {
-      createFallingElements(e.clientX);
-      createSparkleBurst(e.clientX, e.clientY);
+    // Password Check Function
+    function checkPassword() {
+      const passwordInput = document.getElementById('passwordInput');
+      const errorMessage = document.getElementById('errorMessage');
+      const passwordContainer = document.getElementById('passwordContainer');
+      const mainContent = document.getElementById('mainContent');
+      
+      // Correct password is "anjli badmosh" (case insensitive)
+      if (passwordInput.value.toLowerCase() === 'anjli badmosh') {
+        passwordContainer.style.display = 'none';
+        mainContent.style.display = 'block';
+        initializeAnimations();
+      } else {
+        errorMessage.style.display = 'block';
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
+    }
+
+    // Allow pressing Enter key to submit password
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
     });
 
-    function createFallingElements(xPosition) {
-      const elements = ['🌸', '🌼', '💮', '🏵️', '🌺', '🌻', '✨', '🌟'];
-      const colors = ['#ff9e9e', '#ff6b8b', '#ffb6c1', '#ff85a2', '#f8a5c2'];
-      
-      // Create 10 falling elements
-      for (let i = 0; i < 10; i++) {
-        const element = document.createElement('div');
-        element.className = 'falling-element';
-        element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
-        element.style.left = (xPosition - 50 + Math.random() * 100) + 'px';
-        element.style.color = colors[Math.floor(Math.random() * colors.length)];
-        element.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        element.style.fontSize = (Math.random() * 10 + 20) + 'px';
-        document.body.appendChild(element);
-        
-        // Remove after animation completes
-        setTimeout(() => {
-          element.remove();
-        }, 5000);
-      }
-    }
+    // Initialize animations after password is entered
+    function initializeAnimations() {
+      // Create falling elements when tapping anywhere
+      document.addEventListener('click', function(e) {
+        createFallingElements(e.clientX);
+        createSparkleBurst(e.clientX, e.clientY);
+      });
 
-    function createSparkleBurst(x, y) {
-      for (let i = 0; i < 8; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.style.position = 'fixed';
-        sparkle.style.left = x + 'px';
-        sparkle.style.top = y + 'px';
-        sparkle.style.fontSize = '20px';
-        sparkle.style.zIndex = '100';
-        sparkle.innerHTML = ['✨', '❀', '✧', '♥'][Math.floor(Math.random() * 4)];
-        sparkle.style.animation = `sparkleBurst ${Math.random() * 0.5 + 0.5}s ease-out forwards`;
-        sparkle.style.transformOrigin = 'center';
-        document.body.appendChild(sparkle);
+      function createFallingElements(xPosition) {
+        const elements = ['🌸', '🌼', '💮', '🏵️', '🌺', '🌻', '✨', '🌟'];
+        const colors = ['#ff9e9e', '#ff6b8b', '#ffb6c1', '#ff85a2', '#f8a5c2'];
         
-        setTimeout(() => sparkle.remove(), 500);
+        // Create 10 falling elements
+        for (let i = 0; i < 10; i++) {
+          const element = document.createElement('div');
+          element.className = 'falling-element';
+          element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+          element.style.left = (xPosition - 50 + Math.random() * 100) + 'px';
+          element.style.color = colors[Math.floor(Math.random() * colors.length)];
+          element.style.animationDuration = (Math.random() * 3 + 2) + 's';
+          element.style.fontSize = (Math.random() * 10 + 20) + 'px';
+          document.body.appendChild(element);
+          
+          // Remove after animation completes
+          setTimeout(() => {
+            element.remove();
+          }, 5000);
+        }
       }
-    }
 
-    // Add CSS for sparkle burst
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes sparkleBurst {
-        0% { transform: translate(0, 0) scale(0); opacity: 0; }
-        50% { transform: translate(${Math.random() > 0.5 ? '-' : ''}${Math.random() * 30}px, ${Math.random() > 0.5 ? '-' : ''}${Math.random() * 30}px) scale(1.5); opacity: 1; }
-        100% { transform: translate(${Math.random() > 0.5 ? '-' : ''}${Math.random() * 60}px, ${Math.random() > 0.5 ? '-' : ''}${Math.random() * 60}px) scale(0); opacity: 0; }
+      function createSparkleBurst(x, y) {
+        for (let i = 0; i < 8; i++) {
+          const sparkle = document.createElement('div');
+          sparkle.style.position = 'fixed';
+          sparkle.style.left = x + 'px';
+          sparkle.style.top = y + 'px';
+          sparkle.style.fontSize = '20px';
+          sparkle.style.zIndex = '100';
+          sparkle.innerHTML = ['✨', '❀', '✧', '♥'][Math.floor(Math.random() * 4)];
+          sparkle.style.animation = `sparkleBurst ${Math.random() * 0.5 + 0.5}s ease-out forwards`;
+          sparkle.style.transformOrigin = 'center';
+          document.body.appendChild(sparkle);
+          
+          setTimeout(() => sparkle.remove(), 500);
+        }
       }
-    `;
-    document.head.appendChild(style);
+
+      // Add CSS for sparkle burst
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes sparkleBurst {
+          0% { transform: translate(0, 0) scale(0); opacity: 0; }
+          50% { transform: translate(${Math.random() > 0.5 ? '-' : ''}${Math.random() * 30}px, ${Math.random() > 0.5 ? '-' : ''}${Math.random() * 30}px) scale(1.5); opacity: 1; }
+          100% { transform: translate(${Math.random() > 0.5 ? '-' : ''}${Math.random() * 60}px, ${Math.random() > 0.5 ? '-' : ''}${Math.random() * 60}px) scale(0); opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
   </script>
 </body>
 </html>
